@@ -7,7 +7,13 @@ def index(request):
     return render(request, 'blog/index.html')
 
 def post_list(request):
-    post_list = Post.objects.all()
+    # Obtener el valor de la búsqueda desde la URL
+    busqueda = request.GET.get('busqueda', None)
+    if busqueda:
+        post_list = Post.objects.filter(titulo__icontains=busqueda)
+    else:
+        # Obtener todas las publicaciones de la base de datos
+        post_list = Post.objects.all()
     return render(request, 'blog/post_list.html', context={'posts': post_list})
 
 def post_create(request):

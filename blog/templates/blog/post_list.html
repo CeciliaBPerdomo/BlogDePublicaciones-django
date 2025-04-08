@@ -8,6 +8,12 @@
 <div class="d-flex justify-content-end mb-3">
     <a href="{% url 'blog:post_create' %}" class="btn btn-success btn-lg">Crear publicación</a>
 </div>
+
+<form action="{% url 'blog:post_list' %}" method="get">
+    <input type="text" name="busqueda" placeholder="Buscar..." type="submit"
+    class="form-control mb-3" 
+    >
+</form>
 <div class="row row-cols-1 row-cols-md-2 g-4">
     {% for post in posts %}
     <div class="col">
