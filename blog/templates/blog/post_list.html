@@ -3,7 +3,11 @@
 
 {% block content_title %} Lista de Publicaciones {% endblock content_title %}
 
+
 {% block content %}
+<div class="d-flex justify-content-end mb-3">
+    <a href="{% url 'blog:post_create' %}" class="btn btn-success btn-lg">Crear publicación</a>
+</div>
 <div class="row row-cols-1 row-cols-md-2 g-4">
     {% for post in posts %}
     <div class="col">
