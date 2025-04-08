@@ -7,16 +7,16 @@ Blog de novedades
 </p>
 
 <p align="center">
-    by Cecilia Perdomo
+    by Cecilia 💛 Perdomo
 </p>
 
-## Pasos para la instalacion
+## Pasos para la instalación
 - python -m venv .venv
 - .venv\Scripts\activate
 - pip install django
 - django-admin startproject proyecto .
 - crea la base de datos: python manage.py migrate
-    - 🧠 Tip extra: Si agregás o modificás un modelo, siempre tenés que correr makemigrations y migrate, así Django sabe qué cambios reflejar en la base de datos.
+    - 🧠 **Tip extra**: Si agregás o modificás un modelo, siempre tenés que correr makemigrations y migrate, así Django sabe qué cambios reflejar en la base de datos.
         - python manage.py makemigrations
         - python manage.py migrate
 - levanta el servidor: **python manage.py runserver**

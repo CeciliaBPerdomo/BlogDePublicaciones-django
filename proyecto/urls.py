@@ -21,5 +21,6 @@ from blog import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index, name='index'),  # URL para la página de inicio
     path('blog/', views.post_list, name='post_list'),  # URL para la lista de publicaciones
 ]
