@@ -1,4 +1,6 @@
+from django.views.generic import ListView, DetailView, DeleteView
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from .models import Post
 from .forms import PostForm
 
@@ -15,6 +17,18 @@ def post_list(request):
         # Obtener todas las publicaciones de la base de datos
         post_list = Post.objects.all()
     return render(request, 'blog/post_list.html', context={'posts': post_list})
+
+class PostListView(ListView):
+    model = Post
+    template_name = 'blog/post_list.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        busqueda = self.request.GET.get('busqueda', None)
+        if busqueda:
+            queryset = queryset.filter(titulo__icontains=busqueda)
+        return queryset
 
 def post_create(request):
     if request.method == 'POST':
@@ -33,3 +47,12 @@ def post_create(request):
         # Mostrar el formulario de creación de publicación
         form = PostForm()
     return render(request, 'blog/post_create.html', context={'form': form})
+
+class PostDetailView(DetailView):
+    model = Post
+    # template_name = 'blog/post_detail.html'
+    # context_object_name = 'post'
+
+class DeletePostView(DeleteView):
+    model = Post
+    success_url = reverse_lazy('blog:post_list')  # Redirigir a la lista de publicaciones después de eliminar

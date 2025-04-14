@@ -6,15 +6,13 @@
 
 {% block content %}
 <div class="d-flex justify-content-end mb-3">
-    <a href="{% url 'blog:post_create' %}" class="btn btn-success btn-lg">Crear publicación</a>
+    <a href="{% url 'blog:post_create' %}" class="btn btn-success btn-lg">Agregar publicaciones</a>
 </div>
 
 <form action="{% url 'blog:post_list' %}" method="get">
-    <input type="text" name="busqueda" placeholder="Buscar..." type="submit"
-    class="form-control mb-3" 
-    >
+    <input type="text" name="busqueda" placeholder="Buscar..." type="submit" class="form-control mb-3">
 </form>
-<div class="row row-cols-1 row-cols-md-2 g-4">
+<!-- <div class="row row-cols-1 row-cols-md-2 g-4">
     {% for post in posts %}
     <div class="col">
         <a href="#" class="text-decoration-none text-dark">
@@ -30,5 +28,36 @@
         </a>
     </div>
     {% endfor %}
+</div> -->
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Fecha de publicación</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <td>{{ post.titulo }}</td>
+                <td>{{ post.autor.username }}</td>
+                <td>{{ post.fecha_publicacion }}</td>
+                {% if post.estado == "B" %}
+                <td>Borrador</td>
+                {% else %}
+                <td><strong>Publicado</strong></td>
+                {% endif %}
+                <td>
+                    <a href="{% url 'blog:post_detail' post.id %}" class="btn btn-sm btn-info">Detalle</a>
+                    <a href="#" class="btn btn-sm btn-warning">Cambiar</a>
+                    <a href="{% url 'blog:post_delete' post.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock content %}

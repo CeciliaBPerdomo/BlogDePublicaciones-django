@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% block title %} Eliminar {% endblock title %}
+
+{% block content_title %} Eliminar una publicación {% endblock content_title %}
+
+{% block content %}
+<p class="fs-5 text-center">
+    ¿Está seguro de que desea eliminar la publicación "<b>{{ object.titulo }}</b>"?
+</p>
+<p class="fs-5 text-center">Esta acción no se puede deshacer.</p>
+<br>
+<form method="post" class="text-center">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a href="{% url 'blog:post_list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock content %}
