@@ -1,7 +1,13 @@
 {% extends "blog/base.html" %}
 {% block title %} Publicar {% endblock title %}
 
-{% block content_title %} Formulario para crear publicación {% endblock content_title %}
+{% block content_title %} 
+    {% if form.instance.pk %}
+        Edición de una publicación
+    {% else %}
+        Creación de una publicación
+    {% endif %}
+{% endblock content_title %}
 
 {% block content %}
 <form method="post">

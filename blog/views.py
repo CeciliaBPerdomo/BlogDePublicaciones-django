@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, DeleteView
+from django.views.generic import ListView, DetailView, DeleteView,CreateView, UpdateView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from .models import Post
@@ -48,6 +48,32 @@ def post_create(request):
         form = PostForm()
     return render(request, 'blog/post_create.html', context={'form': form})
 
+class PostCreateView(CreateView):
+    model = Post
+    form_class = PostForm
+    success_url = reverse_lazy('blog:post_list')  # Redirigir a la lista de publicaciones después de crear una
+
+    def form_valid(self, form):
+        if self.request.user.is_authenticated:
+            form.instance.autor = self.request.user
+        else:
+            form.add_error(None, "Debes iniciar sesión para crear una publicación.")
+            return self.form_invalid(form)
+        return super().form_valid(form)
+
+class PostUpdateView(UpdateView):
+    model = Post
+    form_class = PostForm
+    #template_name = 'blog/post_update.html'
+    success_url = reverse_lazy('blog:post_list')  # Redirigir a la lista de publicaciones después de actualizar una
+
+    def form_valid(self, form):
+        if self.request.user.is_authenticated:
+            form.instance.autor = self.request.user
+        else:
+            form.add_error(None, "Debes iniciar sesión para actualizar una publicación.")
+            return self.form_invalid(form)
+        return super().form_valid(form)
 class PostDetailView(DetailView):
     model = Post
     # template_name = 'blog/post_detail.html'

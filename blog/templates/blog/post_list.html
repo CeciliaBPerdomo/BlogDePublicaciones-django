@@ -52,7 +52,7 @@
                 {% endif %}
                 <td>
                     <a href="{% url 'blog:post_detail' post.id %}" class="btn btn-sm btn-info">Detalle</a>
-                    <a href="#" class="btn btn-sm btn-warning">Cambiar</a>
+                    <a href="{% url 'blog:post_update' post.id %}" class="btn btn-sm btn-warning">Cambiar</a>
                     <a href="{% url 'blog:post_delete' post.id %}" class="btn btn-sm btn-danger">Eliminar</a>
                 </td>
             </tr>
