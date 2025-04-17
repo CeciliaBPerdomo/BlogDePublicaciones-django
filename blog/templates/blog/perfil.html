@@ -1,0 +1,35 @@
+{% extends "blog/base.html" %}
+{% block title %} Perfil {% endblock title %}
+
+{% block content_title %} Perfil de usuario {% endblock content_title %}
+
+{% block content %}
+<div class="container mt-4">  
+    <table class="table table-bordered table-hover">
+      <tbody>
+        <tr>
+          <th scope="row">Nombre de usuario</th>
+          <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Nombre</th>
+          <td>{{ user.first_name }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Apellido</th>
+          <td>{{ user.last_name }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Email</th>
+          <td>{{ user.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-success w-25" href="{% url 'blog:editar_perfil' %}">
+            Editar perfil
+        </a>
+    </div>
+  </div>
+{% endblock content %}

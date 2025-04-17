@@ -26,3 +26,10 @@ Blog de novedades
     - post = Post(titulo="Python", contenido="El lenguaje perfecto 4x4")
     - post.save()
 - crear usuario administrador: python manage.py createsuperuser
+
+
+## Borrar el .venv
+- `git rm -r --cached venv`
+- `git commit -m "Eliminando venv del índice de Git"`
+- `git add .gitignore`
+- `git commit -m "Actualizando .gitignore"`

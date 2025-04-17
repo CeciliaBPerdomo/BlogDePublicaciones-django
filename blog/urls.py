@@ -18,4 +18,8 @@ urlpatterns = [
 
     # Eliminar una publicación
     path('post/delete/<int:pk>/', views.DeletePostView.as_view(), name='post_delete'),
+
+    # Editar el perfil del usuario
+    path('perfil/', views.perfil, name='perfil'),
+    path('editar_perfil/', views.editar_Perfil, name='editar_perfil'),
 ]

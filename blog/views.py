@@ -2,7 +2,9 @@ from django.views.generic import ListView, DetailView, DeleteView,CreateView, Up
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, EditUserForm
+
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -82,3 +84,17 @@ class PostDetailView(DetailView):
 class DeletePostView(DeleteView):
     model = Post
     success_url = reverse_lazy('blog:post_list')  # Redirigir a la lista de publicaciones después de eliminar
+
+def perfil(request):
+    return render(request, 'blog/perfil.html')
+
+@login_required
+def editar_Perfil(request):
+    if request.method == 'POST':
+        form = EditUserForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('blog:perfil')
+    else:   
+        form = EditUserForm(instance=request.user)
+    return render(request, 'blog/editar_perfil.html', {'form': form})

@@ -1,6 +1,10 @@
 from django import forms
 from .models import Post
 
+# Par editar el formulario de usuario
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.models import User
+
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
@@ -27,3 +31,12 @@ class PostForm(forms.ModelForm):
                 'required': 'Este campo es obligatorio.',
             },
         }
+
+class EditUserForm(UserChangeForm):
+    email = forms.EmailField(required=True, label='Correo electrónico')
+    first_name = forms.CharField(required=True, label='Nombre')
+    last_name = forms.CharField(required=True, label='Apellido')
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name', 'password']
