@@ -32,7 +32,9 @@
                 {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'blog:editar_perfil' %}">
-                            {{ user.username }}
+                            {% if user.avatar.imagen %}
+                                <img src="{{ user.avatar.imagen.url }}" alt="Avatar" class="rounded-circle" width="30" height="30">
+                            {% endif %} {{ user.username }}
                         </a>
                     </li>
                 {% endif %}

@@ -1,8 +1,8 @@
 from django.views.generic import ListView, DetailView, DeleteView,CreateView, UpdateView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from .models import Post
-from .forms import PostForm, EditUserForm
+from .models import Post, Avatar
+from .forms import PostForm, EditUserForm, AvatarForm
 
 from django.contrib.auth.decorators import login_required
 
@@ -92,9 +92,25 @@ def perfil(request):
 def editar_Perfil(request):
     if request.method == 'POST':
         form = EditUserForm(request.POST, instance=request.user)
+        try:
+            avatar = request.user.avatar
+        except Avatar.DoesNotExist:
+            avatar = None
+        
+        if avatar:
+            avatar_form = AvatarForm(request.POST, request.FILES, instance=avatar)
+        else: 
+            avatar_form = AvatarForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            avatar_instance = avatar_form.save(commit=False)
+            avatar_instance.user = request.user
+            avatar_instance.save()
             return redirect('blog:perfil')
     else:   
         form = EditUserForm(instance=request.user)
-    return render(request, 'blog/editar_perfil.html', {'form': form})
+        if hasattr(request.user, 'avatar'):
+            avatar_form = AvatarForm(instance=request.user.avatar)
+        else:
+            avatar_form = AvatarForm()
+    return render(request, 'blog/editar_perfil.html', {'form': form, 'avatar_form': avatar_form})

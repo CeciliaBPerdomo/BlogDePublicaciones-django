@@ -1,5 +1,7 @@
+# blog -> urls.py
 from django.urls import path
 from . import views
+
 
 urlpatterns = [
     path('', views.post_list, name='post_list'),  # <- Esto hace que /blog/ funcione
@@ -23,3 +25,4 @@ urlpatterns = [
     path('perfil/', views.perfil, name='perfil'),
     path('editar_perfil/', views.editar_Perfil, name='editar_perfil'),
 ]
+

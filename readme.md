@@ -17,16 +17,16 @@ Blog de novedades
 - django-admin startproject proyecto .
 - crea la base de datos: python manage.py migrate
     - 🧠 **Tip extra**: Si agregás o modificás un modelo, siempre tenés que correr makemigrations y migrate, así Django sabe qué cambios reflejar en la base de datos.
-        - python manage.py makemigrations --> (None)
-        - python manage.py migrate
+        - `python manage.py makemigrations` --> (None)
+        - `python manage.py migrate`
 - levanta el servidor: **python manage.py runserver**
-- crear app: python manage.py startapp blog
-- python manage.py shell
+- crear app: `python manage.py startapp blog`
+- `python manage.py shell`
     - from blog.models import Post
     - post = Post(titulo="Python", contenido="El lenguaje perfecto 4x4")
     - post.save()
-- crear usuario administrador: python manage.py createsuperuser
-
+- crear usuario administrador: `python manage.py createsuperuser`
+- instalacion de libreria pillow (para imagenes): `pip install pillow`
 
 ## Borrar el .venv
 - `git rm -r --cached venv`

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Avatar
 
 # Par editar el formulario de usuario
 from django.contrib.auth.forms import UserChangeForm
@@ -40,3 +40,8 @@ class EditUserForm(UserChangeForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name', 'password']
+
+class AvatarForm(forms.ModelForm):
+    class Meta:
+        model = Avatar
+        fields = ['imagen']

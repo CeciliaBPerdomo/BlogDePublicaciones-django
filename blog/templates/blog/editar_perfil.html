@@ -4,7 +4,7 @@
 {% block content_title %} Editar perfil de usuario {% endblock content_title %}
 
 {% block content %}
-<form method="post">
+<form method="post" enctype="multipart/form-data" class="w-50 mx-auto">
     {% csrf_token %}
     <table class="table table-bordered align-middle">
         <tbody>
@@ -24,6 +24,7 @@
                 </td>
             </tr>
             {% endfor %}
+            {{ avatar_form.as_table }}
         </tbody>
     </table>
 
