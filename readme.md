@@ -28,6 +28,9 @@ Blog de novedades
 - crear usuario administrador: `python manage.py createsuperuser`
 - instalacion de libreria pillow (para imagenes): `pip install pillow`
 
+## Test 
+- para correr el test de blog: `python manage.py test blog`
+
 ## Borrar el .venv
 - `git rm -r --cached venv`
 - `git commit -m "Eliminando venv del índice de Git"`
