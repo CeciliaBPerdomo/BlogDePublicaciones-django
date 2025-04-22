@@ -9,7 +9,7 @@ urlpatterns = [
     # Vista de inicio, muestra todas las publicaciones
     path('post/list', views.PostListView.as_view(), name='post_list'),
 
-    # Vista detallada de cada publicación
+    # Vista para crear una publicación
     path('post/create', views.PostCreateView.as_view(), name='post_create'),
 
     # Vista para editar una publicación

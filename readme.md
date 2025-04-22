@@ -3,7 +3,7 @@ Blog de novedades
 </h1>
 
 <p align="center">
-    <img src="myAvatar.png">
+    <img src="myAvatar.png" style="width: 50%">
 </p>
 
 <p align="center">

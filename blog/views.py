@@ -78,8 +78,6 @@ class PostUpdateView(UpdateView):
         return super().form_valid(form)
 class PostDetailView(DetailView):
     model = Post
-    # template_name = 'blog/post_detail.html'
-    # context_object_name = 'post'
 
 class DeletePostView(DeleteView):
     model = Post
